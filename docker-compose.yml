@@ -46,6 +46,14 @@ services:
 #    ports:
 #        - "5432:5432"
 
+  # adminer:
+  #   image: adminer:4.7.7
+  #   ports:
+  #     - 8081:8080
+  #   volumes:
+  #     - ./adminer/designs/hydra/adminer.css:/var/www/html/adminer.css
+  #   restart: unless-stopped
+
 volumes:
   app-data:
   db-data:
