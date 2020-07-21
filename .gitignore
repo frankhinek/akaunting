@@ -1,3 +1,7 @@
+# Custom rules
+
+certbot/conf
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,dotenv
@@ -34,4 +38,3 @@ Temporary Items
 .apdisk
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,dotenv
-n
