@@ -34,6 +34,7 @@ services:
       MYSQL_USER: akaunting_admin
       MYSQL_PASSWORD: akaunting_password
     command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
 
 #    image: postgres:alpine
 #    volumes:
