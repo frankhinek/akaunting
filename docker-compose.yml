@@ -16,6 +16,14 @@ services:
       - app-data:/var/www/akaunting
     restart: unless-stopped
 
+  fix_php_permissions:
+    image: php:7.4-fpm
+    command: chown -R www-data:www-data /var/www/akaunting
+    volumes:
+      - app-data:/var/www/akaunting
+    depends_on:
+      - php
+
   db:
     image: mysql:latest
     volumes:
@@ -27,7 +35,6 @@ services:
       MYSQL_PASSWORD: akaunting_password
     command: --default-authentication-plugin=mysql_native_password
 
-
 #    image: postgres:alpine
 #    volumes:
 #      - db-data:/var/lib/postgresql/data
@@ -37,6 +44,7 @@ services:
 #      POSTGRES_PASSWORD: akaunting_password
 #    ports:
 #        - "5432:5432"
+
 volumes:
   app-data:
   db-data:
