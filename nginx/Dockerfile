@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:1.19-alpine
 
 RUN apk update && apk add --no-progress -q wget unzip
 
