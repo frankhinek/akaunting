@@ -6,12 +6,24 @@ services:
     container_name: akaunting-web
     ports:
       - 8080:80
+      - 8443:443
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/conf:/etc/letsencrypt
       - app-data:/var/www/akaunting
     networks:
       - akaunting
     restart: unless-stopped
+
+  certbot:
+    image: certbot/dns-route53
+    container_name: akaunting-certbot
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
   php:
     build: ./php
