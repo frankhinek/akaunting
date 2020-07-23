@@ -60,7 +60,7 @@
 1. Click the **Close** button.
 
 ## Generate Let's Encrypt Certificates
-Run the following to create the wildcard certificate, replacing the DOMAIN_NAME and EMAIL_ACCOUNT
+Run the following to create the wildcard certificate, replacing the `DOMAIN_NAME` and `EMAIL_ACCOUNT`
 values:
 
 ```bash
