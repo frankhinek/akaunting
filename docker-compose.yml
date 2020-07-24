@@ -60,6 +60,20 @@ services:
       - akaunting
     restart: unless-stopped
 
+  db_backup:
+    image: mariadb-backup-sidecar:10.5
+    container_name: akaunting-db-backup
+    volumes:
+      - db-data:/var/lib/mysql
+      - db-backup:/backup
+    environment:
+      CRON_SCHEDULE: "5 3 * * *"
+      BACKUP_DIR: /backup
+      INCREMENTAL: "true"
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_HOST: db
+
 #    image: postgres:alpine
 #    container_name: akaunting-db
 #    volumes:
@@ -90,4 +104,5 @@ networks:
 
 volumes:
   app-data:
+  db-backup:
   db-data:
