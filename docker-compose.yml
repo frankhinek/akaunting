@@ -21,6 +21,8 @@ services:
     restart: unless-stopped
     env_file:
       - ./.env
+    networks:
+      - akaunting
     volumes:
       - ./certbot/conf:/etc/letsencrypt
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
@@ -73,6 +75,8 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: ${DB_ROOT_PASSWORD}
       MYSQL_HOST: db
+    networks:
+      - akaunting
 
 #    image: postgres:alpine
 #    container_name: akaunting-db
